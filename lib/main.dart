@@ -135,6 +135,18 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           ),
                           child: const Text('Cancel'),
                         ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const MainMenu()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                          child: const Text('Skip'),
+                        ),
                       ],
                     ),
                   ],
@@ -462,6 +474,12 @@ class Display extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Flutter Building layouts'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: ListView(
           children: [
