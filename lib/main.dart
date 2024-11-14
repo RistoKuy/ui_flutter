@@ -267,6 +267,7 @@ class MainMenu extends StatelessWidget {
             _buildMenuItem(context, Icons.person, 'Profile'),
             _buildMenuItem(context, Icons.settings, 'Setting'),
             _buildMenuItem(context, Icons.archive, 'Arsip'),
+            _buildMenuItem(context, Icons.display_settings, 'Display'), // New menu item
           ],
         ),
       ),
@@ -282,6 +283,11 @@ class MainMenu extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ArchivePage()),
+            );
+          } else if (label == 'Display') { // New navigation condition
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Display()),
             );
           }
         },
@@ -383,6 +389,115 @@ class ThankYouPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Display extends StatelessWidget {
+  const Display({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Atap Rumah',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Aku Berlindung dari sinar dan air',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          Text('41'),
+        ],
+      ),
+    );
+
+    Widget buttonSection = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColumn(Colors.blue, Icons.call, 'CALL'),
+          _buildButtonColumn(Colors.blue, Icons.near_me, 'ROUTE'),
+          _buildButtonColumn(Colors.blue, Icons.share, 'SHARE'),
+        ],
+      ),
+    );
+
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Text(
+        'kamu tidak berhenti memberikan keindahan yang sering aku lewatkan, '
+        'kamu, ciptaan yang diam, tapi aku faham maksudmu, '
+        'kesibukan dan campak ku membuat dirimu terlihat biasa, '
+        'hari ini aku menatap mu dengan hati yang lusuh, '
+        'diam mu membuat aku bersyukur, '
+        'SEMESTA, Aku menyerah, bawa aku dalam senjamu ... - tenang',
+        softWrap: true,
+      ),
+    );
+
+    return MaterialApp(
+      title: 'Flutter Building layouts',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Building layouts'),
+        ),
+        body: ListView(
+          children: [
+            Image.network(
+              'https://th.bing.com/th/id/OIP.qyWXENxkV0pHVF3_Fh-d0QHaE8?rs=1&pid=ImgDetMain',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
+            titleSection,
+            buttonSection,
+            textSection,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
